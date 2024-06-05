@@ -2,7 +2,7 @@ import React from 'react';
 import './Movie.css';
 
 const Movie = ({ movie }) => {
-  const { title, release_date, poster_path } = movie;
+  const { title, release_date, poster_path, genre_ids } = movie;
   const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
   const handleMovieClick = () => {

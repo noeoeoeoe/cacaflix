@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './Home.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import logo from './logo.svg';
 import Movie from '../../components/Movie/movie';
 
 function Home() {
@@ -44,15 +44,19 @@ function Home() {
     <div className="App">
       <header className="App-header">
         <h1> CACAFLIX </h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to caca.
-        </p>
-        <input
-          type="text"
-          value={movieName}
-          onChange={(event) => setMovieName(event.target.value)}
+        <img
+          src="https://us-tuna-sounds-images.voicemod.net/7d3afa92-e900-4354-96c4-920b8a7e290b-1715507655354.png"
+          alt="Example"
+          style={{ maxWidth: '100%', height: 'auto' }}
         />
+        <p>
+          RECHERCHER :<br></br>
+          <input
+            type="text"
+            value={movieName}
+            onChange={(event) => setMovieName(event.target.value)}
+          />
+        </p>
         <p>{movieName}</p>
         {moviesLoadingError && <p>{moviesLoadingError}</p>}
         <ul>
