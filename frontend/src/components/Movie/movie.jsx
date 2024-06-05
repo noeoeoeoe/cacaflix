@@ -1,24 +1,30 @@
 import React from 'react';
 import './Movie.css';
 
-const Movie = ({ movie }) => {
-  const { title, release_date, poster_path, genre_ids } = movie;
-  const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
-
+const Movie = ({ movies }) => {
   return (
-    <div className="movie">
-      <img src={imageUrl} alt={title} />
-      <h2>{title}</h2>
-      <p>Release Date: {release_date}</p>
+    <ul>
+      {movies.map((movie) => (
+        <li key={movie.id}>
+          <div className="movie">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+            />
+            <h2>{movie.title}</h2>
+            <p>Release Date: {movie.release_date}</p>
 
-      <div className="genres">
-        {genre_ids.map((genre, genreIndex) => (
-          <span key={genreIndex} className="genre-box">
-            {genre}
-          </span>
-        ))}
-      </div>
-    </div>
+            <div className="genres">
+              {movie.genre_ids?.map((genre, genreIndex) => (
+                <span key={genreIndex} className="genre-box">
+                  {genre}
+                </span>
+              ))}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 };
 
