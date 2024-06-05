@@ -43,10 +43,6 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
         <input
           type="text"
           value={movieName}
@@ -54,12 +50,11 @@ function Home() {
         />
         <p>{movieName}</p>
         {moviesLoadingError && <p>{moviesLoadingError}</p>}
-        <ul>
+        <div className="movie-grid">
           {movies.map((movie) => (
             <Movie key={movie.id} movie={movie} />
           ))}
-        </ul>
-
+        </div>
         <a
           className="App-link"
           href="https://react.dev"

@@ -5,6 +5,16 @@ const Movie = ({ movie }) => {
   const { title, release_date, poster_path } = movie;
   const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  };
+
   const handleMovieClick = () => {
     const wikiUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(
       title
@@ -16,7 +26,7 @@ const Movie = ({ movie }) => {
     <div className="movie">
       <img src={imageUrl} alt={title} />
       <h2>{title}</h2>
-      <p>Release Date: {release_date}</p>
+      <p>{formatDate(release_date)}</p>
     </div>
   );
 };
