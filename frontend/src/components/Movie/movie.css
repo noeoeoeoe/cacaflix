@@ -1,5 +1,5 @@
 .movie {
-  margin: 20px;
+  margin: 10px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -11,7 +11,7 @@
 
 .movie:hover {
   transform: scale(1.05);
-  background-color: #f1e2b8;
+  background-color: #e0e0e0;
 }
 
 .movie img {
@@ -21,9 +21,9 @@
 }
 
 .movie h2 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin: 10px 0;
-  color: rgb(0, 0, 0);
+  color: #666;
 }
 
 .movie p {

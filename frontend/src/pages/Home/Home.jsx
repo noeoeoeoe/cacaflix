@@ -26,8 +26,11 @@ function Home() {
         </p>
         <p>{movieName}</p>
         {moviesLoadingError && <p>{moviesLoadingError}</p>}
-        <Movie movies={movies} />
-
+        <div className="movie-grid">
+          {movies.map((movie) => (
+            <Movie key={movie.id} movie={movie} />
+          ))}
+        </div>
         <a
           className="App-link"
           href="https://react.dev"
