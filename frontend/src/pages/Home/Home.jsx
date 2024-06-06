@@ -56,14 +56,6 @@ function Home() {
             <Movie key={movie.id} movie={movie} />
           ))}
         </div>
-        <a
-          className="App-link"
-          href="https://react.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
