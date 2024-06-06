@@ -1,19 +1,20 @@
 import typeorm from 'typeorm';
 
-const Actor = new typeorm.EntitySchema({
-  name: 'Actor',
+const Genre = new typeorm.EntitySchema({
+  name: 'Genre',
   columns: {
     id: {
       primary: true,
       type: Number,
       generated: true,
     },
-    firstname: {
+    imdb_id: {
+      type: Number,
+      unique: true,
+    },
+    name: {
       type: String,
     },
-    lastname: {
-        type: String,
-      },
   },
   relations: {
     movies: {
@@ -25,4 +26,4 @@ const Actor = new typeorm.EntitySchema({
   },
 });
 
-export default Actor;
+export default Genre;

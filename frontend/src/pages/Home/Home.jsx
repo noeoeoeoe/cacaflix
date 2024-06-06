@@ -10,7 +10,8 @@ function Home() {
 
   const API_KEY =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjlmNjAwMzY4MzMzODNkNGIwYjNhNzJiODA3MzdjNCIsInN1YiI6IjY0NzA5YmE4YzVhZGE1MDBkZWU2ZTMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Em7Y9fSW94J91rbuKFjDWxmpWaQzTitxRKNdQ5Lh2Eo';
-  const fetchData = async () => {
+  
+  /*const fetchData = async () => {
     try {
       const header = { Authorization: `Bearer ${API_KEY}` };
       const response = await axios.get(
@@ -25,6 +26,15 @@ function Home() {
       );
 
       setMovies(response.data.results.slice(0, 10));
+    } catch (error) {
+      console.log(error);
+    }
+  };*/
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/movies/recommanded');
+      setMovies(response.data.movies);
     } catch (error) {
       console.log(error);
     }

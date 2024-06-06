@@ -14,6 +14,29 @@ router.get('/', function (req, res) {
     });
 });
 
+const sortMovies = (movies) => {
+  movies.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    }
+    if (a.date > b.date) {
+      return -1;
+    }
+    return 0;
+  });
+  return movies;
+};
+
+router.get('/recommanded', function (req, res) {
+  appDataSource
+    .getRepository(Movie)
+    .find({})
+    .then(function (movies) {
+      movies = sortMovies(movies);
+      res.json({ movies: movies });
+    });
+});
+
 router.post('/new', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
   const newMovie = movieRepository.create({
@@ -38,3 +61,5 @@ router.post('/new', function (req, res) {
 });
 
 export default router;
+
+
