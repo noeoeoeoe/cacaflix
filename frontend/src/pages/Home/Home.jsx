@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import './Home.css';
 import axios from 'axios';
 import Movie from './../../components/Movie/Movie';
+import MovieCard from './../../components/MovieCard/MovieCard';
+
 
 function Home() {
   const [movieName, setMovieName] = useState('');

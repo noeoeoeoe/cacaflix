@@ -1,6 +1,7 @@
 import express from 'express';
 import { appDataSource } from '../datasource.js';
 import Movie from '../entities/movie.js';
+import { getRecommendations, handleSwipe } from '../controllers/movieController.js';
 
 
 const router = express.Router();
@@ -14,28 +15,8 @@ router.get('/', function (req, res) {
     });
 });
 
-const sortMovies = (movies) => {
-  movies.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    }
-    if (a.date > b.date) {
-      return -1;
-    }
-    return 0;
-  });
-  return movies;
-};
-
-router.get('/recommanded', function (req, res) {
-  appDataSource
-    .getRepository(Movie)
-    .find({})
-    .then(function (movies) {
-      movies = sortMovies(movies);
-      res.json({ movies: movies });
-    });
-});
+router.get('/recommendations', getRecommendations);
+router.post('/swipe', handleSwipe);
 
 router.post('/new', function (req, res) {
   const movieRepository = appDataSource.getRepository(Movie);
