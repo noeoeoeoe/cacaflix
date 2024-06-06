@@ -29,9 +29,13 @@ function Counter() {
 
   return (
     <div className="app">
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} onSwipe={handleSwipe} />
-      ))}
+      <img src="./cross.png" alt="nope"  id='nope'/>
+      <div className="container">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} onSwipe={handleSwipe} />
+        ))}
+      </div>
+      <img src="./like.png" alt="like" id='like' />
     </div>
   );
 }

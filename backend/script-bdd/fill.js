@@ -18,6 +18,7 @@ const fetchData = async () => {
         );
         const data = response.data.results;
 
+        await appDataSource.initialize();
         const movieRepository = appDataSource.getRepository(Movie);
         console.log(movieRepository);
         for (const movieData of data) {

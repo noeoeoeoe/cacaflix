@@ -7,7 +7,7 @@ import User from './entities/user.js';
 
 export const appDataSource = new DataSource({
   type: 'sqlite',
-  database: process.env.DATABASE_NAME,
+  database: process.env.DATABASE_NAME || 'database.sqlite3',
   synchronize: false,
   entities: [Movie, Actor, Genre, Swipe, User],
   migrations: ['migrations/*.js'],

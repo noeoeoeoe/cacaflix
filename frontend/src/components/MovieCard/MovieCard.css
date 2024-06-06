@@ -1,9 +1,44 @@
+.app {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  overflow: hidden;
+  width: 100vw;
+  height: 80vh;
+  text-align: center;
+  position: relative; /* Ajoutez cette ligne si vous utilisez position absolute sur la card */
+}
+
 .card {
-  width: 300px;
-  height: 400px;
+  width: 600px;
+  height: 530px;
+  padding: 20px;
   background-size: cover;
   background-position: center;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Si vous souhaitez toujours utiliser position absolute */
+  margin: auto;
+  transform: translateX(-300px);
+  background-color: white;
+  color: black;
+  user-select: none;
+}
+
+.card img {
+  width: 200px;
+}
+
+#like {
+  width: 100px;
   position: absolute;
+  right: 150px;
+  top: 40%;
+}
+
+#nope {
+  width: 100px;
+  position: absolute;
+  left: 150px;
+  top: 40%;
 }

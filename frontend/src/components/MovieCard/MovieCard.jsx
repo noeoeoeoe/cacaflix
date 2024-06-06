@@ -1,5 +1,6 @@
 import React from 'react';
 import TinderCard from 'react-tinder-card';
+import './MovieCard.css';
 
 const MovieCard = ({ movie, onSwipe }) => {
   const handleSwipe = (direction) => {
@@ -13,11 +14,15 @@ const MovieCard = ({ movie, onSwipe }) => {
     >
       <div
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`,
+          //backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`,
         }}
         className="card"
       >
-        <h3>{movie.title}</h3>
+        <h3>{movie.title} - Note : {movie.vote_average}/10</h3> 
+        <p>{movie.release_date}</p>
+        <p>{movie.overview}</p>
+        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+
       </div>
     </TinderCard>
   );

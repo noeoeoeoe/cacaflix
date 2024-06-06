@@ -58,7 +58,7 @@ function Home() {
   return (
     <div className="App-container">
       <div className="main-content">
-        <div class="hero-home">
+        <div className="hero-home">
           <h1>Films et séries en illimité, et bien plus</h1>
           <div className="search-bar">
             <input
