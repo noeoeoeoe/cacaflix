@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import './Movie.css';
 
@@ -13,36 +14,34 @@ const Movie = ({ movies, genres }) => {
   };
 
   const findGenre = (genresList, genreId) => {
-    for (const genre of genresList) {
-      if (parseInt(genre.id) === parseInt(genreId)) {
-        return genre.name;
-      }
-    }
+    const genre = genresList.find((caca) => caca.id === genreId);
 
-    return 'caca'; // Retourner null si aucun genre correspondant n'est trouvé
+    return genre ? genre.name : 'Genre inconnu';
   };
 
   return (
     <div className="movie-list">
       {movies.map((movie) => {
         return (
-          <div key={movie.id} className="movie-item">
-            <div className="movie">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <h2>{movie.title}</h2>
-              <p>{formatDate(movie.release_date)}</p>
-              <div className="genres">
-                {movie.genre_ids.map((genreId) => (
-                  <span key={genreId} className="genre-box">
-                    {findGenre(genres, genreId)}
-                  </span>
-                ))}
+          <Link key={movie.id} className="Link" to={`/movies/${movie.id}`}>
+            <div className="movie-item">
+              <div className="movie">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <h2>{movie.title}</h2>
+                <p>{formatDate(movie.release_date)}</p>
+                <div className="genres">
+                  {movie.genre_ids.map((genreId) => (
+                    <span key={genreId} className="genre-box">
+                      {findGenre(genres, genreId)}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>
