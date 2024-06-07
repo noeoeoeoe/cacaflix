@@ -5,12 +5,12 @@ import { useFetchMovies } from '../../components/Movie/useFetchMovies';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
-  const { movies, moviesLoadingError } = useFetchMovies();
+  const { movies, moviesLoadingError, genres } = useFetchMovies();
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1> CAFLIX </h1>
+        <h1> CACAFLIX </h1>
         <img
           src="https://us-tuna-sounds-images.voicemod.net/7d3afa92-e900-4354-96c4-920b8a7e290b-1715507655354.png"
           alt="Example"
@@ -27,18 +27,8 @@ function Home() {
         <p>{movieName}</p>
         {moviesLoadingError && <p>{moviesLoadingError}</p>}
         <div className="movie-grid">
-          {movies.map((movie) => (
-            <Movie key={movie.id} movie={movie} />
-          ))}
+          <Movie movies={movies} genres={genres} />
         </div>
-        <a
-          className="App-link"
-          href="https://react.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );

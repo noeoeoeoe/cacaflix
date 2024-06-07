@@ -1,10 +1,7 @@
 import React from 'react';
 import './Movie.css';
 
-const Movie = ({ movie }) => {
-  const { title, release_date, poster_path } = movie;
-  const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
-
+const Movie = ({ movies, genres }) => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
 
@@ -15,36 +12,40 @@ const Movie = ({ movie }) => {
     });
   };
 
-  const handleMovieClick = () => {
-    const wikiUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(
-      title
-    )}`;
-    window.open(wikiUrl, '_blank');
+  const findGenre = (genresList, genreId) => {
+    for (const genre of genresList) {
+      if (parseInt(genre.id) === parseInt(genreId)) {
+        return genre.name;
+      }
+    }
+
+    return 'caca'; // Retourner null si aucun genre correspondant n'est trouvé
   };
 
   return (
-    <ul>
-      {movies.map((movie) => (
-        <li key={movie.id}>
-          <div className="movie">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <h2>{movie.title}</h2>
-            <p>Release Date: {movie.release_date}</p>
-
-            <div className="genres">
-              {movie.genre_ids?.map((genre, genreIndex) => (
-                <span key={genreIndex} className="genre-box">
-                  {genre}
-                </span>
-              ))}
+    <div className="movie-list">
+      {movies.map((movie) => {
+        return (
+          <div key={movie.id} className="movie-item">
+            <div className="movie">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <h2>{movie.title}</h2>
+              <p>{formatDate(movie.release_date)}</p>
+              <div className="genres">
+                {movie.genre_ids.map((genreId) => (
+                  <span key={genreId} className="genre-box">
+                    {findGenre(genres, genreId)}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </li>
-      ))}
-    </ul>
+        );
+      })}
+    </div>
   );
 };
 
