@@ -1,16 +1,15 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import React from 'react';
 import './Movie.css';
 
 const Movie = ({ movies, genres }) => {
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
+  const [currentPage, setCurrentPage] = useState(1);
+  const moviesPerPage = 8;
 
-    return date.toLocaleDateString('fr-FR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
   };
 
   const findGenre = (genresList, genreId) => {
@@ -19,9 +18,17 @@ const Movie = ({ movies, genres }) => {
     return genre ? genre.name : 'Genre inconnu';
   };
 
+  // Calculer l'index de début et de fin des films à afficher pour la page actuelle
+  const indexOfLastMovie = currentPage * moviesPerPage;
+  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
+
+  // Changer de page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="movie-list">
-      {movies.map((movie) => {
+      {currentMovies.map((movie) => {
         return (
           <Link key={movie.id} className="Link" to={`/movies/${movie.id}`}>
             <div className="movie-item">
@@ -44,6 +51,20 @@ const Movie = ({ movies, genres }) => {
           </Link>
         );
       })}
+      <div>
+        <div className="movie-list">{/* Movie list rendering */}</div>
+        {/* Pagination */}
+        <div className="pagination">
+          {Array.from(
+            { length: Math.ceil(movies.length / moviesPerPage) },
+            (_, i) => (
+              <button key={i + 1} onClick={() => paginate(i + 1)}>
+                {i + 1}
+              </button>
+            )
+          )}
+        </div>
+      </div>
     </div>
   );
 };
