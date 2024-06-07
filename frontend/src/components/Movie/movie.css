@@ -1,3 +1,7 @@
+.Link {
+  text-decoration: none; /* Supprime les soulignements des liens */
+}
+
 .movie-list {
   display: flex;
   flex-wrap: wrap;
