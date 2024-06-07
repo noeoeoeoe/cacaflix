@@ -1,67 +1,26 @@
-.movie-list {
+.movies-table,
+.movies-table td,
+.movies-table th {
+  border-collapse: collapse;
+  border: 1px solid grey;
+}
+
+.movies-table td,
+.movies-table th {
+  padding: 10px;
+}
+
+.movie-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 0;
-  margin: 0;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 50px;
 }
 
-.movie-item {
-  list-style-type: none; /* Supprime les puces */
-  width: 300px; /* Largeur fixe */
-}
-
-.movie {
+.left-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 10px; /* Coins arrondis */
-  padding: 10px;
-  background-color: #ececec;
-  height: 550px; /* Hauteur fixe */
-  box-sizing: border-box; /* Inclut padding et bordure dans la hauteur totale */
-  transition: transform 0.3s ease;
-}
-
-.movie img {
-  max-width: 100%;
-  border-radius: 10px; /* Coins arrondis pour l'image */
-  height: 60%; /* Hauteur de l'image par rapport à l'élément */
-  object-fit: cover; /* Recadre l'image pour couvrir entièrement la boîte */
-}
-
-.movie h2 {
-  font-size: 1.2em;
-  color: #000000;
-  margin: 10px 0 5px;
-  text-align: center;
-  flex-grow: 1; /* Prend de l'espace supplémentaire pour aligner les éléments */
-}
-
-.movie p {
-  color: #555;
-  margin: 5px 0;
-  text-align: center;
-}
-
-.genres {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.genre-box {
-  background-color: #b0b0b0;
-  border: 1px solid #ccc;
-  border-radius: 15px; /* Coins plus arrondis */
-  padding: 5px 10px;
-  margin: 5px;
-  font-size: 0.6em;
-}
-
-.movie:hover {
-  transform: scale(1.05); /* Agrandit l'élément à 105% de sa taille originale */
+  align-items: flex-start;
+  margin-right: 20px;
+  max-width: 50%;
 }

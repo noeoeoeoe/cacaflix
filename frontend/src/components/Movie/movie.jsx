@@ -1,49 +1,23 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
 import './Movie.css';
 
-const Movie = ({ movies, genres }) => {
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
+const Movie = ({ key, movie }) => {
+  let image_src = `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`
 
-    return date.toLocaleDateString('fr-FR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  };
-
-  const findGenre = (genresList, genreId) => {
-    const genre = genresList.find((caca) => caca.id === genreId);
-
-    return genre ? genre.name : 'Genre inconnu';
-  };
+  let releaseDate = new Date(movie.release_date).toLocaleDateString('fr-FR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
 
   return (
-    <div className="movie-list">
-      {movies.map((movie) => {
-        return (
-          <Link key={movie.id} className="Link" to={`/movies/${movie.id}`}>
-            <div className="movie-item">
-              <div className="movie">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                />
-                <h2>{movie.title}</h2>
-                <p>{formatDate(movie.release_date)}</p>
-                <div className="genres">
-                  {movie.genre_ids.map((genreId) => (
-                    <span key={genreId} className="genre-box">
-                      {findGenre(genres, genreId)}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Link>
-        );
-      })}
+    <div className="movie-container">
+      <div className='left-container'>
+        <h2>{movie.title} - {releaseDate}</h2>
+
+        <p>{movie.overview}</p>
+      </div>
+      <div className='right-container'><img src={image_src} className="App-logo" alt="logo" /></div>
     </div>
   );
 };
