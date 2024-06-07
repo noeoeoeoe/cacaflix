@@ -19,9 +19,14 @@ function Counter() {
   }, []);
 
   const handleSwipe = async (direction, movie) => {
+    console.log("testttt")
     try {
+      console.log("coucou1");
       const action = direction === 'right' ? true : false;
       await axios.post('http://localhost:8000/movies/swipe', { movieId: movie.id, action });
+      console.log("coucou2");
+      const response = await axios.get('http://localhost:8000/movies/recommendation');
+      setMovies([response.data, ...movies]);
     } catch (error) {
       console.error('Error handling swipe:', error);
     }

@@ -18,6 +18,10 @@ const Movie = new typeorm.EntitySchema({
     imdb_id: { type: Number, nullable: true },
     title: { type: String },
     release_date: { type: String, nullable: true },
+    realisator: { type: String, nullable: true },
+    first_actor: { type: String, nullable: true },
+    second_actor: { type: String, nullable: true },
+    main_genre: { type: String, nullable: true },
   },
   relations: {
     actors: {

@@ -1,7 +1,7 @@
 import express from 'express';
 import { appDataSource } from '../datasource.js';
 import Movie from '../entities/movie.js';
-import { getRecommendations, handleSwipe } from '../controllers/movieController.js';
+import { getRecommendations, handleSwipe, getNextRecommendation } from '../controllers/movieController.js';
 
 
 const router = express.Router();
@@ -16,6 +16,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/recommendations', getRecommendations);
+router.get('/recommendation', getNextRecommendation);
 router.post('/swipe', handleSwipe);
 
 router.post('/new', function (req, res) {
