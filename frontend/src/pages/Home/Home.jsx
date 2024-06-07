@@ -1,11 +1,24 @@
 import './Home.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Movie from '../../components/Movie/movie';
 import { useFetchMovies } from '../../components/Movie/useFetchMovies';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
   const { movies, moviesLoadingError, genres } = useFetchMovies();
+  const [filteredMovies, setFilteredMovies] = useState([]);
+
+  useEffect(() => {
+    function Filtre(movieList, search) {
+      return movies.filter((movie) =>
+        movie.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    if (movies) {
+      setFilteredMovies(Filtre(movies, movieName));
+    }
+  }, [movieName, movies]);
 
   return (
     <div className="App">
@@ -24,10 +37,9 @@ function Home() {
             onChange={(event) => setMovieName(event.target.value)}
           />
         </p>
-        <p>{movieName}</p>
         {moviesLoadingError && <p>{moviesLoadingError}</p>}
         <div className="movie-grid">
-          <Movie movies={movies} genres={genres} />
+          <Movie movies={filteredMovies} genres={genres} />
         </div>
       </header>
     </div>
