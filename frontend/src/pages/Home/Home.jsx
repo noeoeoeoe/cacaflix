@@ -1,11 +1,23 @@
+import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './Home.css';
-import { useState } from 'react';
-import Movie from '../../components/Movie/movie';
+import axios from 'axios';
+import Movie from '../../components/Movie/Movie';
+import MovieCard from '../../components/MovieCard/MovieCard';
 import { useFetchMovies } from '../../components/Movie/useFetchMovies';
 
 function Home() {
   const [movieName, setMovieName] = useState('');
   const { movies, moviesLoadingError, genres } = useFetchMovies();
+
+  const API_KEY =
+    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjlmNjAwMzY4MzMzODNkNGIwYjNhNzJiODA3MzdjNCIsInN1YiI6IjY0NzA5YmE4YzVhZGE1MDBkZWU2ZTMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Em7Y9fSW94J91rbuKFjDWxmpWaQzTitxRKNdQ5Lh2Eo';
+  
+  
+  const listMoviesTitles = movies.map((movie) => (
+    <li>{movie.original_title}</li>
+  ));
+
 
   return (
     <div className="App">

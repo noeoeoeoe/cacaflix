@@ -3,23 +3,23 @@ import './Header.css';
 
 const Header = () => {
   return (
-    <div className="Header-container">
+    <header className="Header-container">
+      <div id="logo"><img src="/Logonetflix.png" alt="" /></div>
+      <div className="links">
       <Link className="Link" to="/">
         Home
       </Link>
-      <div>|</div>
       <Link className="Link" to="/counter">
-        Counter
+        Pour vous
       </Link>
-      <div>|</div>
       <Link className="Link" to="/users">
         Users
       </Link>
-      <div>|</div>
       <Link className="Link" to="/about">
         About
       </Link>
-    </div>
+      </div>
+    </header>
   );
 };
 
