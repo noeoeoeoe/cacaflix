@@ -27,6 +27,7 @@
 
 .card img {
   width: 200px;
+  pointer-events: none;
 }
 
 #like {

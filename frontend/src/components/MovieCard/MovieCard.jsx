@@ -21,7 +21,7 @@ const MovieCard = ({ movie, onSwipe }) => {
         <h3>{movie.title} - Note : {movie.vote_average}/10</h3> 
         <p>{movie.release_date}</p>
         <p>{movie.overview}</p>
-        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} draggable="false"/>
 
       </div>
     </TinderCard>

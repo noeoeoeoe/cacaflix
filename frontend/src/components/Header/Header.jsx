@@ -10,7 +10,7 @@ const Header = () => {
         Home
       </Link>
       <Link className="Link" to="/counter">
-        Counter
+        Pour vous
       </Link>
       <Link className="Link" to="/users">
         Users

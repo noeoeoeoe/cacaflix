@@ -2,6 +2,9 @@ import axios from 'axios';
 import { appDataSource } from '../datasource.js';
 import Movie from '../entities/movie.js';
 import Actor from '../entities/actor.js';
+import Genre from '../entities/genre.js';
+
+
 
 const fetchData = async () => {
     try {
@@ -17,10 +20,18 @@ const fetchData = async () => {
         }
         );
         const data = response.data.results;
-
+        
         await appDataSource.initialize();
+
+        const genreRepository = appDataSource.getRepository(Genre);
+        const genres = await genreRepository.find();
+
+        const genreMap = new Map();
+        for (const genre of genres) {
+            genreMap.set(genre.imdb_id, genre);
+        }
+
         const movieRepository = appDataSource.getRepository(Movie);
-        console.log(movieRepository);
         for (const movieData of data) {
             console.log(movieData);
             const newMovie = movieRepository.create({
@@ -35,6 +46,8 @@ const fetchData = async () => {
                 vote_average: movieData.vote_average,
                 vote_count: movieData.vote_count
             });
+
+            newMovie.genres = movieData.genre_ids.map(genreId => genreMap.get(genreId));
             console.log(newMovie);
             await movieRepository.save(newMovie);
         }
@@ -45,3 +58,4 @@ const fetchData = async () => {
 };
 
 fetchData();
+
