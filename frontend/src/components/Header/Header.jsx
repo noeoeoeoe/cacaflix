@@ -4,7 +4,7 @@ import './Header.css';
 const Header = () => {
   return (
     <header className="Header-container">
-      <div id="logo"><img src="/Logonetflix.png" alt="" /></div>
+      <div id="logo">Adopte un film</div>
       <div className="links">
       <Link className="Link" to="/">
         Home

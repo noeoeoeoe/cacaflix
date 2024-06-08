@@ -111,12 +111,10 @@ export const getNextRecommendation = async (req, res) => {
       score -= commonProducer * ProducerCoeff;
     }
   
-    console.log(score);
     return score;
 
   };
 
-  console.log("test")
   // Calculer le score de recommandation pour chaque film
   newMovies.forEach(movie => {
     movie.score = calculateScore(movie, likedMovies, dislikedMovies, ProducerCoeff, ActeurCoeff, GenreCoeff, RatioAttiranceRejet);
@@ -170,25 +168,4 @@ export const handleSwipe = async (req, res) => {
     res.status(200).send('Swipe recorded');
   }
 
-  /*const existingSwipe = await swipeRepository.findOne({
-    where: {
-      user: userId,
-      movie: movieId,
-    },
-  });
-  
-  if (existingSwipe) {
-    // Mettre à jour l'entrée existante
-    existingSwipe.action = action;
-    await swipeRepository.save(existingSwipe);
-  } else {
-    // Créer une nouvelle entrée si elle n'existe pas
-    const newSwipe = swipeRepository.create({
-      user: userId,
-      movie: movieId,
-      action: action,
-    });
-    await swipeRepository.save(newSwipe);
-    res.status(200).send('Swipe recorded');
-  };*/
 }

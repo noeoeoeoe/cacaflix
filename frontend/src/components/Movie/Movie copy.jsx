@@ -4,7 +4,7 @@ import './Movie.css';
 
 const Movie = ({ movies, genres }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const moviesPerPage = 20;
+  const moviesPerPage = 8;
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
